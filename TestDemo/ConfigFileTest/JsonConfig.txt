@@ -1,0 +1,1047 @@
+﻿{
+	"Init":
+	[	
+		{"split":"Steps"},
+		
+		{"split":"Instructions"}
+		
+		
+	],
+
+	"Desc":
+	[
+		{
+			"Description":
+			{
+				"id":"201501010",
+				"name":"李红",
+				"sex":"女",
+				"age":"16",
+				"num":"20151111"
+			}
+		},
+		{
+			"Description":
+			{
+				"id":"201501012",
+				"name":"王刚",
+				"sex":"男",
+				"age":"17",
+				"num":"20151112"
+			}
+		}
+	],
+	
+	"Steps": 
+	[
+	
+		
+	
+		{
+		
+			"Scene":
+			[
+				{"name":"Scene1"}
+			],
+			
+			
+			
+			"Instructions":
+			[
+				{"op":"tip",					"label":"LabelTest",			"text":"测试案例哈哈，改变设置"},
+				
+				{"op":"onflashing",				"model":"cube1"},
+				{"event":"OnMouseLeftDown",		"model":"cube1",				"function":"functionTest"},
+				{"##":""},
+				
+				{"op":"tip",	    			"label":"LibraryTipLabel",		"text":"请用夹子夹取小块肝脏，并放入EP管中。"},
+				{"op":"flashingoff",			"model":"niezi"},
+				{"op":"hide",					"model":"niezi"},
+				{"op":"flashingon",				"model":"hepar"},
+				{"op":"color",					"model":"hepar",				"color":"0,255,0"},
+				{"event":"OnMouseDrag",			"model":"hepar,epguan02",		"function":"EPTrigger"},
+				{"##":""},
+				
+				{"op":"color",					"model":"hepar",				"color":"0,0,0"},
+				{"op":"flashingoff",			"model":"epguan01"},
+				{"op":"hide",					"model":"hepar"},
+				{"op":"show",					"model":"niezi"}
+			]
+			
+		},
+	
+		{
+		
+			"Scene":
+			[
+				{"name":"Scene2"}
+			],
+			
+			"Models":
+			[
+				{"model":"yiyeqixin",	"name":"移液器"}, 
+				
+				{"model":"paomoxiang",	"name":"泡沫箱"},
+
+				{"model":"ourtrizol",	"name":"Trizol试剂"}
+			],
+			
+			"Display":
+			[
+				{"model":"paomoxiang"},
+				
+				{"model":"yiyeqixin"},
+
+				{"model":"yiyeqijiazi"},
+				
+				{"model":"ourtrizol"}
+			],
+			
+			
+			"Instructions":
+			[
+				{"op":"tip",					"label":"BGTitleLabel",  		"text":"二、EP管内添加Trizol试剂"},
+				{"op":"flashingon",				"model":"ourtrizol"},
+				{"op":"tip",					"label":"LibraryTipLabel",  	"text":"请点击打开Trizol溶液瓶盖。"},
+				{"event":"OnMouseLeftDown",		"model":"ourtrizol"},
+				{"##":""},
+				
+				{"op":"flashingoff",			"model":"ourtrizol"},
+				{"op":"anim",					"model":"ourtrizol",			"name":"Take 001"},
+				{"op":"flashingon",				"model":"yiyeqixin"},
+				{"op":"tip",					"label":"LibraryTipLabel",  	"text":"请拿起移液器进行溶液的抽取。"},
+				{"event":"OnMouseDrag",			"model":"yiyeqixin,ourtrizol",	"function":"SetPosition"},
+				{"##":""},
+
+				{"op":"flashingoff",			"model":"yiyeqixin"},
+				{"op":"anim",					"model":"yiyeqixin",			"name":"Take 001"},
+				{"op":"tip",					"label":"LibraryTipLabel",  	"text":"请抽取1ml液体"},
+				{"event":"OnMouseRightDown",	"model":"yiyeqixin"},
+				{"##":""},
+				
+				{"op":"showUI",					"UI":"AbsorbLiquidPanel"},
+				{"event":"OnMouseLeftDown",		"model":"yiyeqixin",			"function":"HideLabel",		"data":[{"value":"1"}]},
+				{"##":""},
+				
+				{"op":"flashingon",				"model":"epguan01"},
+				{"op":"tip",	    			"label":"LibraryTipLabel",		"text":"请将溶液加入EP管中。"},
+				{"event":"OnMouseDrag",			"model":"yiyeqixin,epguan02",	"function":"SetPosition2"},
+				{"##":""},
+				
+				{"op":"flashingoff",			"model":"epguan01"},
+				{"op":"tip",	    			"label":"LibraryTipLabel",		"text":"双击移液器加入溶液。"},
+				{"event":"OnMouseDoubleClick",	"model":"yiyeqixin"},
+				{"##":""},
+				
+				{"op":"anim",					"model":"yiyeqixin",			"name":"Take 002"},
+				{"event":"OnWaitSecond",		"time":"2s"},
+				{"##":""}
+			]
+			
+		},
+		
+		{
+		
+			"Scene":
+			[
+				{"name":"Scene3"}
+			],
+			
+			
+			"Models":
+			[
+				{"model":"paomoxiang",	"name":"泡沫箱"},
+
+				{"model":"yunjiangji",	"name":"匀浆机"}
+			],
+			
+			"Display":
+			[
+				{"model":"paomoxiang"}, 
+
+				{"model":"yunjiangji"}
+			],
+			
+			"Instructions":
+			[
+				{"op":"tip",					"label":"BGTitleLabel",				"text":"三、粉碎小鼠肝脏"},
+				{"op":"tip",					"label":"LibraryTipLabel",  		"text":"请选择泡沫箱移动到匀浆机上。"},
+				{"op":"flashingon",				"model":"paomoxiang"},
+				{"op":"flashingon",				"model":"yunjiangji"},
+				{"event":"OnMouseDrag",			"model":"paomoxiang,yunjiangji",	"function":"setPos"},
+				{"##":""},
+				
+				
+				{"op":"flashingoff",			"model":"paomoxiang"},
+				{"op":"flashingoff",			"model":"yunjiangji"},
+				{"op":"tip",	    			"label":"LibraryTipLabel",			"text":"已经进入匀浆机，请开启匀浆机电源。"},
+				{"event":"OnMouseLeftDown",		"model":"startButton",				"function":"GoNext"},
+				{"##":""},
+				
+				{"op":"tip",	    			"label":"LibraryTipLabel",			"text":"匀浆即将完成，请准备进行下一步。"},
+				{"op":"anim",					"model":"yunjiangji",				"name":"Take 001"},
+				{"op":"showUI",					"model":"TimePanel"},
+				{"##":""},
+				
+				{"op":"hideUI",					"model":"TimePanel"},
+				{"op":"hide",					"model":"paomoxiang"},
+				{"op":"hide",					"model":"yunjiangji"}
+			]
+			
+		},
+		
+		{
+			"Scene":
+			[
+				{"name":"Scene4"}
+			],
+			
+			"Models":
+			[
+				{"model":"paomoxiang",	"name":"泡沫箱"},
+
+				{"model":"yunjiangji",	"name":"匀浆机"}
+			],
+			
+			"Display":
+			[
+				{"model":"paomoxiang"}, 
+
+				{"model":"yunjiangji"}
+			],
+			
+			"Instructions":
+			[
+				{"op":"tip",					"label":"BGTitleLabel",				"text":"四、室温静置"},
+				{"op":"tip",					"label":"LibraryTipLabel",  		"text":"室温下静置5分钟，静置使细胞充分裂解，核蛋白中核酸与蛋白解离。"},
+				{"op":"showUI",					"UI":"WaitTimeSprite"},
+				{"##":""},
+				
+				{"op":"hideUI",					"UI":"WaitTimeSprite"},
+				{"op":"showUI",					"UI":"TimeShowSprite"},
+				{"event":"OnWaitSecond",		"time":"2s"},
+				{"##":""},
+				
+				{"op":"hideUI",					"model":"TimeShowSprite"},
+				{"op":"hide",					"model":"paomoxiang"},
+				{"op":"hide",					"model":"yunjiangji"}
+			]
+			
+		},
+		
+		{
+		
+			"Scene":
+			[
+				{"name":"Scene5"}
+			],
+			
+			
+			"Models":
+			[
+				{"model":"lvfang",		"name":"氯仿溶液"},
+
+				{"model":"yiyeqixin",	"name":"移液器"}
+			],
+			
+			"Display":
+			[
+				{"model":"lvfang"},
+
+				{"model":"epguan01"}, 				
+
+				{"model":"yiyeqixin"},
+				
+				{"model":"yiyeqijiazi"}
+			],
+			
+			"Instructions":
+			[
+				{"op":"tip",					"label":"BGTitleLabel",				"text":"五、EP管内添加氯仿试剂"},
+				{"op":"tip",					"label":"LibraryTipLabel",  		"text":"请点击打开氯仿溶液的瓶盖。"},
+				{"op":"flashingon",				"model":"lvfang"},
+				{"event":"OnMouseLeftDown",		"model":"lvfang"},
+				{"##":""},
+		
+				{"op":"tip",	    			"label":"LibraryTipLabel",			"text":"请拿起移液器进行溶液的抽取。"},
+				{"op":"flashingoff",			"model":"lvfang"},
+				{"op":"flashingon",				"model":"yiyeqixin"},
+				{"op":"anim",					"model":"lvfang",					"name":"Take 001"},
+				{"event":"OnMouseDrag",			"model":"yiyeqixin,lvfang",			"function":"setPos"},
+				{"##":""},
+				
+				{"op":"tip",	    			"label":"LibraryTipLabel",			"text":"请抽取0.2ml氯仿。"},
+				{"op":"flashingoff",			"model":"yiyeqixin"},
+				{"op":"anim",					"model":"yiyeqixin",				"name":"Take 001"},
+				{"event":"OnMouseRightDown",	"model":"yiyeqixin",				"function":"ShowUI",		"data":[{"value":"0.2"}]},
+				{"##":""},
+				
+				{"op":"tip",	    			"label":"LibraryTipLabel",			"text":"请将移液器中的液体加入到EP管中。"},
+				{"op":"flashingon",				"model":"epguan01"},
+				{"op":"hideUI",					"UI":"AbsorbLiquidPanel"},
+				{"event":"OnMouseDrag",			"model":"yiyeqixin,epguan01",		"function":"setPos2"},
+				{"##":""},
+				
+				{"op":"tip",	    			"label":"LibraryTipLabel",			"text":"双击移液器加入溶液。"},
+				{"op":"flashingoff",			"model":"epguan01"},
+				{"event":"OnMouseDoubleClick",	"model":"yiyeqixin"},
+				{"##":""},
+
+				{"op":"tip",	    			"label":"LibraryTipLabel",			"text":"正在加入溶液。"},
+				{"op":"anim",					"model":"yiyeqixin",				"name":"Take 002"},
+				{"event":"OnWaitSecond",		"time":"2"},
+				{"##":""},
+
+				{"op":"hide",					"model":"yiyeqixin"},
+				{"op":"hide",					"model":"lvfang"},
+				{"op":"hide",					"model":"yiyeqijiazi"},
+				{"op":"hide",					"model":"epguan01"}
+				
+			]
+		},
+	
+		{
+			"Scene":
+			[
+				{"name":"Scene6"}
+			],
+			
+			"Models":
+			[
+				
+			],
+			
+			"Display":
+			[
+				{"model":"epguan01"}				
+			],
+			
+			"Instructions":
+			[
+				{"op":"tip",					"label":"BGTitleLabel",				"text":"六、震荡EP管"},
+				{"op":"tip",					"label":"LibraryTipLabel",  		"text":"点击关闭EP管盖子，并剧烈震荡EP管15秒（不得少于15秒）。"},
+				{"op":"flashingon",				"model":"epguan01"},
+				{"event":"OnMouseLeftDown",		"model":"epguan01"},
+				{"##":""},
+				
+				{"op":"flashingoff",			"model":"epguan01"},
+				{"op":"anim",					"model":"epguan01",					"name":"Take 0011"},
+				{"op":"showUI",					"UI":"EpShakeSprite"},
+				{"op":"tip",					"label":"LibraryTipLabel",  		"text":"输入震荡时间，不得少于15秒。"},
+				{"##":""},
+				
+				{"op":"tip",	    			"label":"LibraryTipLabel",			"text":"震荡EP管中。"},
+				{"op":"showUI",					"UI":"EpguanShakeSprite"},
+				{"event":"OnWaitSecond",		"time":"2s"},
+				{"##":""},
+				
+				{"op":"hideUI",					"UI":"EpguanShakeSprite"},
+				{"op":"hide",					"model":"yiyeqixin"},
+				{"op":"hide",					"model":"lvfang"},
+				{"op":"hide",					"model":"yiyeqijiazi"},
+				{"op":"hide",					"model":"epguan01"}
+			]
+		},
+		
+		{
+			"Scene":
+			[
+				{"name":"Scene6"}
+			],
+			
+			"Models":
+			[
+				{"model":"paomoxiang",	"name":"泡沫箱"}
+			],
+			
+			"Display":
+			[
+				{"model":"epguan01"}, 				
+
+				{"model":"paomoxiang"}
+			],
+			
+			"Instructions":
+			[
+				{"op":"tip",					"label":"BGTitleLabel",				"text":"七、冰浴静置"},
+				{"op":"tip",					"label":"LibraryTipLabel",  		"text":"请将EP管放入冰盒进行冰浴静置。"},
+				{"op":"flashingon",				"model":"epguan01"},
+				{"op":"pos",					"model":"epguan01",					"pos":"-0.098,0.118,0.082"},
+				{"op":"hide",					"model":"epguan02"},
+				{"event":"OnMouseDrag",			"model":"epguan01,paomoxiang",		"function":"SetPos"},
+				{"##":""},
+				
+				{"op":"pos",					"model":"epguan01",					"pos":"-0.062,0.118,0.068"},
+				{"op":"flashingoff",			"model":"epguan01"},
+				{"op":"showUI",					"UI":"TimeShowSprite"},
+				{"op":"tip",					"label":"LibraryTipLabel",  		"text":"冰浴静置中。"},
+				{"event":"OnWaitSecond",		"time":"2s"},
+				{"##":""},
+				
+				{"op":"hideUI",					"UI":"TimeShowSprite"},
+				{"op":"hide",					"model":"epguan01"},
+				{"op":"show",					"model":"epguan02"},
+				{"op":"hide",					"model":"paomoxiang"}
+			]
+		},
+		
+		{
+			"Scene":
+			[
+				{"name":"Scene8"}
+			],
+			
+			"Models":
+			[
+				{"model":"lixinji",	"name":"离心机"}
+			],
+			
+			"Display":
+			[
+				{"model":"epguan03"}, 				
+				
+				{"model":"lixinji"}
+			],
+			
+			"Instructions":
+			[
+				{"op":"tip",					"label":"BGTitleLabel",				"text":"八、高速分离EP管内物料"},
+				{"op":"tip",					"label":"LibraryTipLabel",  		"text":"请点击打开高速离心机的盖子。"},
+				{"op":"flashingon",				"model":"w_headusOBJexport"},
+				{"event":"OnMouseLeftDown",		"model":"w_headusOBJexport",		"function":"SetCamera"},
+				{"##":""},
+				
+				{"op":"flashingoff",			"model":"w_headusOBJexport"},
+				{"op":"anim",					"model":"lixinji",					"name":"Take 001"},
+				{"op":"flashingon",				"model":"epguan03"},
+				{"op":"tip",					"label":"LibraryTipLabel",  		"text":"EP管需要与配平管180° 对称放置。"},
+				{"event":"OnUpdate",			"model":"epguan03,~destroy,~order",				"function":"SetRayCasted"},
+				{"event":"OnMouseDrag",			"model":"epguan03,~setpos,~destroy,~order",		"function":"setPos"},
+				{"event":"OnMouseDoubleClick",	"model":"epguan03,~destroy,~order",				"function":"CheakCondition"},
+				{"##":""},
+				
+				{"event":"OffEvent",			"model":"epguan03",					"name":"OnUpdate"},
+				{"event":"OffEvent",			"model":"epguan03",					"name":"OnMouseDrag"},
+				{"event":"OffEvent",			"model":"epguan03",					"name":"OnMouseDoubleClick"},
+				{"op":"flashingoff",			"model":"epguan03"},
+				{"op":"tip",					"label":"LibraryTipLabel",  		"text":"请点击关闭高速离心机的盖子。"},
+				{"event":"OnMouseLeftDown",		"model":"w_headusOBJexport",		"function":"lixinjiInput",		"data":[{"value":"4,12000,15"}]},
+				{"##":""},
+				
+				{"op":"anim",					"model":"lixinji",					"name":"Take 002"},
+				{"op":"showUI",					"UI":"lixinjiInputSprite"},
+				{"op":"tip",					"label":"LibraryTipLabel",  		"text":"请调整高速冷冻离心机设置（离心温度4℃,离心速度12000rpm,离心时间15Min）。"},
+				{"##":""},
+				
+				{"op":"hideUI",					"UI":"lixinjiInputSprite"},
+				{"op":"showUI",					"UI":"TimeShowSprite"},
+				{"event":"OnWaitSecond",		"time":"3s"},
+				{"##":""},
+
+				{"op":"hideUI",					"UI":"TimeShowSprite"},
+				{"op":"hideUI",					"UI":"TimeShowSprite"},
+				{"op":"hide",					"model":"epguan03"},
+				{"op":"show",					"model":"epguan02"},
+				{"op":"hide",					"model":"lixinji"},
+				{"op":"anim",					"model":"lixinji",					"name":"Take 002"}
+			]
+		},
+		
+		{
+			"Scene":
+			[
+				{"name":"Scene9"}
+			],
+			
+			"Models":
+			[
+				{"model":"lixinji",		"name":"离心机"},
+				
+				{"model":"paomoxiang",	"name":"泡沫箱"}
+			],
+			
+			"Display":
+			[
+				{"model":"epguan09"}, 				
+
+				{"model":"paomoxiang2"},
+				
+				{"model":"lixinji"}
+			],
+			
+			"Instructions":
+			[
+				{"op":"tip",					"label":"BGTitleLabel",				"text":"九、从高速冷冻离心机内取出EP管放入冰盒内"},
+				{"op":"tip",					"label":"LibraryTipLabel",  		"text":"请点击打开高速离心机的盖子。"},
+				{"op":"hide",					"model":"epguan00"},
+				{"op":"flashingon",				"model":"w_headusOBJexport"},
+				{"event":"OnMouseLeftDown",		"model":"w_headusOBJexport",		"function":"SetCamera"},
+				{"##":""},
+				
+				{"op":"tip",					"label":"LibraryTipLabel",  		"text":"请双击EP管使其进入冰盒。"},
+				{"op":"flashingoff",			"model":"w_headusOBJexport"},
+				{"op":"anim",					"model":"lixinji",					"name":"Take 001"},
+				{"op":"flashingon",				"model":"epguan09"},
+				{"event":"OnMouseDoubleClick",	"model":"epguan09",					"function":"OnEpguanClicked"},
+				{"##":""},
+				
+				{"op":"tip",					"label":"LibraryTipLabel",  		"text":"EP管进冰浴中。"},
+				{"event":"OnWaitSecond",		"time":"4s"},
+				{"##":""},
+				
+				{"op":"tip",					"label":"LibraryTipLabel",  		"text":"已经成功放入冰盒中。"},
+				{"op":"anim",					"model":"lixinji",					"name":"Take 002"},
+				{"op":"flashingoff",			"model":"epguan09"},
+				{"op":"hide",					"model":"epguan09"},
+				{"op":"show",					"model":"epguan00"},
+				{"op":"hide",					"model":"lixinji"},
+				{"op":"hide",					"model":"paomoxiang"}
+			]
+		},
+	
+		{
+			"Scene":
+			[
+				{"name":"Scene10"}
+			],
+			
+			"Models":
+			[
+				{"model":"yiyeqixin",	"name":"移液器"},
+				
+				{"model":"garbage",	"name":"垃圾桶"},
+				
+				{"model":"paomoxiang",	"name":"泡沫箱"}
+			],
+			
+			"Display":
+			[
+				{"model":"epguan01"}, 				
+
+				{"model":"paomoxiang2"},
+				
+				{"model":"garbage"},
+				
+				{"model":"yiyeqijiazi"},
+				
+				{"model":"yiyeqixin"}
+			],
+			
+			"Instructions":
+			[
+				{"op":"tip",					"label":"BGTitleLabel",				"text":"十、将水相移直到新的EP管内"},
+				{"op":"tip",					"label":"LibraryTipLabel",  		"text":"请拿起移液器抽取水相。"},
+				{"op":"flashingon",				"model":"yiyeqixin"},
+				{"event":"OnMouseDrag",			"model":"yiyeqixin,epguan00",		"function":"SetPos"},
+				{"##":""},
+				
+				{"op":"tip",					"label":"LibraryTipLabel",  		"text":"请双击移液器抽取水相。"},
+				{"event":"OnMouseDoubleClick",	"model":"yiyeqixin",				"function":"OnEpguanClicked"},
+				{"##":""},
+				
+				{"op":"tip",					"label":"LibraryTipLabel",  		"text":"水相已经吸取，请加入到新的EP管中。"},
+				{"op":"flashingoff",			"model":"yiyeqixin"},
+				{"op":"anim",					"model":"yiyeqixin",				"name":"Take 001"},
+				{"op":"flashingon",				"model":"epguan01"},
+				{"event":"OnMouseDrag",			"model":"yiyeqixin,epguan01",		"function":"SetPos2"},
+				{"##":""},
+				
+				{"op":"tip",					"label":"LibraryTipLabel",  		"text":"请双击移液器，将水相加入到新的EP管中。"},
+				{"op":"flashingoff",			"model":"epguan01"},
+				{"event":"OnMouseDoubleClick",	"model":"yiyeqixin"},
+				{"##":""},
+				
+				
+				{"op":"tip",					"label":"LibraryTipLabel",  		"text":"水相已经加入到新的EP管中，请将旧的EP管丢弃。"},
+				{"op":"anim",					"model":"yiyeqixin",				"name":"Take 002"},
+				{"op":"flashingon",				"model":"epguan00"},
+				{"event":"OnMouseDrag",			"model":"epguan00,garbage",			"function":"SetPos3"},
+				{"##":""},
+				
+				{"op":"hide",					"model":"epguan00"},
+				{"event":"OnWaitSecond",		"time":"2s"},
+				{"##":""},
+				
+				{"op":"flashingoff",			"model":"epguan00"},
+				{"op":"hide",					"model":"epguan01"},
+				{"op":"hide",					"model":"yiyeqixin"},
+				{"op":"hide",					"model":"yiyeqijiazi"},
+				{"op":"hide",					"model":"paomoxiang"}
+			]
+		},
+		
+		{
+			"Scene":
+			[
+				{"name":"Scene11"}
+			],
+			
+			"Models":
+			[
+				{"model":"yiyeqixin",	"name":"移液器"},
+				
+				{"model":"yibingchun",	"name":"异丙醇溶液"}
+			],
+			
+			"Display":
+			[
+				{"model":"epguan11"}, 				
+
+				{"model":"yibingchun"},
+				
+				{"model":"yiyeqijiazi"},
+				
+				{"model":"yiyeqixin"}
+			],
+			
+			"Instructions":
+			[
+				{"op":"tip",					"label":"BGTitleLabel",				"text":"十一、沉淀RNA"},
+				{"op":"tip",					"label":"LibraryTipLabel",  		"text":"请点击打开异丙醇瓶盖。"},
+				{"op":"flashingon",				"model":"yibingchun"},
+				{"event":"OnMouseLeftDown",		"model":"yibingchun"},
+				{"##":""},
+				
+				{"op":"tip",					"label":"LibraryTipLabel",  		"text":"请拿起移液器进行溶液的抽取。"},
+				{"op":"anim",					"model":"yibingchun",				"name":"Take 001"},
+				{"op":"flashingoff",			"model":"yibingchun"},
+				{"op":"flashingon",				"model":"yiyeqixin"},
+				{"event":"OnMouseDrag",			"model":"yiyeqixin,yibingchun",		"function":"SetPos"},
+				{"##":""},
+				
+				{"op":"tip",					"label":"LibraryTipLabel",  		"text":"请右击吸取异丙醇溶液0.5ml。"},
+				{"op":"anim",					"model":"yiyeqixin",				"name":"Take 001"},
+				{"event":"OnMouseRightDown",	"model":"yiyeqixin",				"function":"onAbsorbLiquid",		"data":[{"value":"0.5"}]},
+				{"##":""},
+				
+				{"op":"tip",					"label":"LibraryTipLabel",  		"text":"请将溶液加入到EP管中。"},
+				{"op":"flashingoff",			"model":"yiyeqixin"},
+				{"op":"flashingon",				"model":"epguan11"},
+				{"event":"OnMouseDrag",			"model":"yiyeqixin,epguan11",		"function":"SetPos2"},
+				{"##":""},
+				
+				{"op":"tip",					"label":"LibraryTipLabel",  		"text":"请双击移液器，将溶液加入EP管中。"},
+				{"op":"flashingoff",			"model":"epguan11"},
+				{"event":"OnMouseDoubleClick",	"model":"yiyeqixin",				"function":"SetCurString",			"data":[{"value":"10"}]},
+				{"##":""},
+				
+				{"op":"tip",					"label":"LibraryTipLabel",  		"text":"异丙醇溶液已经添加。关闭EP管盖子，并震荡EP管使物质混匀，室温静置10分钟（不得少于10分钟）"},
+				{"op":"anim",					"model":"yiyeqixin",				"name":"Take 002"},
+				{"op":"showUI",					"UI":"WaitTimeSprite"},
+				{"##":""},
+				
+				{"op":"hideUI",					"UI":"WaitTimeSprite"},
+				{"op":"hide",					"model":"yiyeqixin"},
+				{"op":"anim",					"model":"epguan11",					"name":"Take 0011"},
+				{"event":"OnWaitSecond",		"time":"2s"},
+				{"##":""},
+				
+				{"op":"hide",					"model":"epguan11"},
+				{"op":"showUI",					"UI":"EpguanShakeSprite"},
+				{"event":"OnWaitSecond",		"time":"2s"},
+				{"##":""},
+				
+				{"op":"hideUI",					"UI":"EpguanShakeSprite"},
+				{"op":"show",					"model":"epguan11"},
+				{"op":"showUI",					"UI":"TimeShowSprite"},
+				{"event":"OnWaitSecond",		"time":"2s"},
+				{"##":""},
+				
+				{"op":"hideUI",					"UI":"TimeShowSprite"},
+				{"op":"hide",					"model":"epguan11"},
+				{"op":"hide",					"model":"yiyeqijiazi"},
+				{"op":"hide",					"model":"yibingchun"}
+			]
+		},
+		
+		{
+			"Scene":
+			[
+				{"name":"Scene12"}
+			],
+			
+			"Models":
+			[
+				{"model":"lixinji",	"name":"离心机"}
+			],
+			
+			"Display":
+			[
+				{"model":"epguan03"}, 				
+
+				{"model":"lixinji"}
+			],
+			
+			"Instructions":
+			[
+				{"op":"tip",					"label":"BGTitleLabel",				"text":"十二、高速分离EP管内物料"},
+				{"op":"tip",					"label":"LibraryTipLabel",  		"text":"请打开高速冷冻离心机盖子。"},
+				{"op":"flashingon",				"model":"w_headusOBJexport"},
+				{"event":"OnMouseLeftDown",		"model":"w_headusOBJexport",		"function":"SetCamera"},
+				{"##":""},
+				
+				{"op":"tip",					"label":"LibraryTipLabel",  		"text":"请拿起EP管放入高速冷冻离心机中。"},
+				{"op":"flashingoff",			"model":"w_headusOBJexport"},
+				{"op":"anim",					"model":"lixinji",					"name":"Take 001"},
+				{"op":"flashingon",				"model":"epguan03"},
+				{"event":"OnUpdate",			"model":"epguan03,~destroy,~order",				"function":"SetRayCasted"},
+				{"event":"OnMouseDrag",			"model":"epguan03,~setpos,~destroy,~order",		"function":"setPos"},
+				{"event":"OnMouseDoubleClick",	"model":"epguan03,~destroy,~order",				"function":"CheakCondition"},
+				{"##":""},
+				
+				{"op":"tip",					"label":"LibraryTipLabel",  		"text":"请关闭高速冷冻离心机盖子。"},
+				{"event":"OffEvent",			"model":"epguan03",					"name":"OnUpdate"},
+				{"event":"OffEvent",			"model":"epguan03",					"name":"OnMouseDrag"},
+				{"event":"OffEvent",			"model":"epguan03",					"name":"OnMouseDoubleClick"},
+				{"op":"show",					"model":"peizhongguan"},
+				{"op":"flashingoff",			"model":"epguan03"},
+				{"event":"OnMouseLeftDown",		"model":"w_headusOBJexport",		"function":"lixinjiInput",		"data":[{"value":"4,12000,10"}]},
+				{"##":""},
+				
+				{"op":"tip",					"label":"LibraryTipLabel",  		"text":"请调整高速冷冻离心机设置（离心温度4℃,离心速度12000rpm,离心时间10Min）。"},
+				{"op":"anim",					"model":"lixinji",					"name":"Take 002"},
+				{"op":"hide",					"model":"peizhongguan"},
+				{"##":""},
+				
+	
+				{"op":"showUI",					"UI":"TimeShowSprite"},
+				{"event":"OnWaitSecond",		"time":"3s"},
+				{"##":""},
+
+				{"op":"hideUI",					"UI":"TimeShowSprite"},
+				{"op":"hide",					"model":"epguan03"},
+				{"op":"show",					"model":"epguan02"},
+				{"op":"hide",					"model":"lixinji"},
+				{"op":"anim",					"model":"lixinji",					"name":"Take 002"}
+			]
+		},
+		
+		{
+			"Scene":
+			[
+				{"name":"Scene13"}
+			],
+			
+			"Models":
+			[
+				{"model":"lixinji",	"name":"离心机"}
+			],
+			
+			"Display":
+			[
+				{"model":"epguan13"}, 				
+
+				{"model":"lixinji"}
+			],
+			
+			"Instructions":
+			[
+				{"op":"tip",					"label":"BGTitleLabel",				"text":"十三、从高速冷冻离心机内取出EP管，丢弃上清"},
+				{"op":"tip",					"label":"LibraryTipLabel",  		"text":"请打开离心机盖子。"},
+				{"op":"flashingon",				"model":"w_headusOBJexport"},
+				{"event":"OnMouseLeftDown",		"model":"w_headusOBJexport",		"function":"SetCamera"},
+				{"##":""},
+				
+				{"op":"tip",					"label":"LibraryTipLabel",  		"text":"请双击EP管使其放到桌面上。"},
+				{"op":"flashingoff",			"model":"w_headusOBJexport"},
+				{"op":"anim",					"model":"lixinji",					"name":"Take 001"},
+				{"op":"flashingon",				"model":"epguan13"},
+				{"event":"OnMouseDoubleClick",	"model":"epguan13",					"function":"OnEpguanClicked"},
+				{"##":""},
+				
+				{"event":"OnWaitSecond",		"time":"4s"},
+				{"##":""},
+				
+				{"op":"tip",					"label":"LibraryTipLabel",  		"text":"已经将EP管放在桌面上，请点击EP管丢弃上清。"},
+				{"event":"OnMouseLeftDown",		"model":"epguan13"},
+				{"##":""},
+				
+				{"op":"anim",					"model":"epguan13",					"name":"Take 0010"},
+				{"event":"OnWaitSecond",		"time":"2s"},
+				{"##":""},
+				
+				{"op":"flashingoff",			"model":"epguan13"},
+				{"op":"hide",					"model":"epguan13"},
+				{"op":"hide",					"model":"lixinji"}
+			]
+		},
+		
+		{
+			"Scene":
+			[
+				{"name":"Scene14"}
+			],
+			
+			"Models":
+			[
+				{"model":"yiyeqixin",	"name":"移液器"},
+				
+				{"model":"bingyichun",	"name":"冰乙醇溶液"}
+			],
+			
+			"Display":
+			[
+				{"model":"epguan11"}, 				
+
+				{"model":"bingyichun"},
+				
+				{"model":"yiyeqijiazi"},
+				
+				{"model":"yiyeqixin"}
+			],
+			
+			"Instructions":
+			[
+				{"op":"tip",					"label":"BGTitleLabel",				"text":"十四、EP管内添加冰乙醇"},
+				{"op":"tip",					"label":"LibraryTipLabel",  		"text":"请点击打开冰乙醇瓶盖。"},
+				{"op":"flashingon",				"model":"bingyichun"},
+				{"event":"OnMouseLeftDown",		"model":"bingyichun"},
+				{"##":""},
+				
+				{"op":"tip",					"label":"LibraryTipLabel",  		"text":"请拿起移液器进行溶液的抽取。"},
+				{"op":"anim",					"model":"bingyichun",				"name":"Take 001"},
+				{"op":"flashingoff",			"model":"bingyichun"},
+				{"op":"flashingon",				"model":"yiyeqixin"},
+				{"event":"OnMouseDrag",			"model":"yiyeqixin,bingyichun",		"function":"SetPos"},
+				{"##":""},
+				
+				{"op":"tip",					"label":"LibraryTipLabel",  		"text":"请吸取冰乙醇溶液1ml。"},
+				{"op":"anim",					"model":"yiyeqixin",				"name":"Take 001"},
+				{"event":"OnMouseRightDown",	"model":"yiyeqixin",				"function":"onAbsorbLiquid",		"data":[{"value":"1"}]},
+				{"##":""},
+				
+				{"op":"tip",					"label":"LibraryTipLabel",  		"text":"请将溶液加入到EP管中。"},
+				{"op":"flashingoff",			"model":"yiyeqixin"},
+				{"op":"flashingon",				"model":"epguan11"},
+				{"event":"OnMouseDrag",			"model":"yiyeqixin,epguan11",		"function":"SetPos2"},
+				{"##":""},
+				
+				{"op":"tip",					"label":"LibraryTipLabel",  		"text":"请双击移液器，将溶液加入EP管中。"},
+				{"op":"flashingoff",			"model":"epguan11"},
+				{"event":"OnMouseDoubleClick",	"model":"yiyeqixin"},
+				{"##":""},
+				
+				{"op":"tip",					"label":"LibraryTipLabel",  		"text":"异丙醇溶液已经添加。"},
+				{"op":"anim",					"model":"yiyeqixin",				"name":"Take 002"},
+				{"event":"OnWaitSecond",		"time":"2s"},
+				{"##":""},
+				
+				{"op":"hide",					"model":"epguan11"},
+				{"op":"hide",					"model":"yiyeqijiazi"},
+				{"op":"hide",					"model":"yibingchun"}
+			]
+		},
+		
+		{
+			"Scene":
+			[
+				{"name":"Scene8"}
+			],
+			
+			"Models":
+			[
+				{"model":"lixinji",	"name":"离心机"}
+			],
+			
+			"Display":
+			[
+				{"model":"epguan03"}, 				
+
+				{"model":"lixinji"}
+			],
+			
+			"Instructions":
+			[
+				{"op":"tip",					"label":"BGTitleLabel",				"text":"十五、高速分离EP管内物料"},
+				{"op":"tip",					"label":"LibraryTipLabel",  		"text":"请打开高速冷冻离心机盖子。"},
+				{"op":"flashingon",				"model":"w_headusOBJexport"},
+				{"event":"OnMouseLeftDown",		"model":"w_headusOBJexport",		"function":"SetCamera"},
+				{"##":""},
+				
+				{"op":"tip",					"label":"LibraryTipLabel",  		"text":"请拿起EP管放入高速冷冻离心机中。"},
+				{"op":"flashingoff",			"model":"w_headusOBJexport"},
+				{"op":"anim",					"model":"lixinji",					"name":"Take 001"},
+				{"op":"flashingon",				"model":"epguan03"},
+				{"event":"OnUpdate",			"model":"epguan03,~destroy,~order",				"function":"SetRayCasted"},
+				{"event":"OnMouseDrag",			"model":"epguan03,~setpos,~destroy,~order",		"function":"setPos"},
+				{"event":"OnMouseDoubleClick",	"model":"epguan03,~destroy,~order",				"function":"CheakCondition"},
+				{"##":""},
+				
+				{"op":"tip",					"label":"LibraryTipLabel",  		"text":"请关闭高速冷冻离心机盖子。"},
+				{"event":"OffEvent",			"model":"epguan03",					"name":"OnUpdate"},
+				{"event":"OffEvent",			"model":"epguan03",					"name":"OnMouseDrag"},
+				{"event":"OffEvent",			"model":"epguan03",					"name":"OnMouseDoubleClick"},
+				{"op":"flashingoff",			"model":"epguan03"},
+				{"event":"OnMouseLeftDown",		"model":"w_headusOBJexport",		"function":"lixinjiInput",		"data":[{"value":"4,12000,6"}]},
+				{"##":""},
+				
+				{"op":"tip",					"label":"LibraryTipLabel",  		"text":"请调整高速冷冻离心机设置（离心温度4℃,离心速度12000rpm,离心时间6Min）。"},
+				{"op":"anim",					"model":"lixinji",					"name":"Take 002"},
+				{"##":""},
+	
+				{"op":"showUI",					"UI":"TimeShowSprite"},
+				{"event":"OnWaitSecond",		"time":"3s"},
+				{"##":""},
+
+				{"op":"hideUI",					"UI":"TimeShowSprite"},
+				{"op":"hide",					"model":"epguan03"},
+				{"op":"show",					"model":"epguan02"},
+				{"op":"hide",					"model":"lixinji"}
+			]
+		},
+		
+		{
+			"Scene":
+			[
+				{"name":"Scene16"}
+			],
+			
+			"Models":
+			[
+				{"model":"lixinji",	"name":"离心机"}
+			],
+			
+			"Display":
+			[
+				{"model":"epguan16"}, 				
+
+				{"model":"lixinji"}
+			],
+			
+			"Instructions":
+			[
+				{"op":"tip",					"label":"BGTitleLabel",				"text":"十六、从高速冷冻离心机内取出EP管，丢弃上清"},
+				{"op":"tip",					"label":"LibraryTipLabel",  		"text":"请打开离心机盖子。"},
+				{"op":"flashingon",				"model":"w_headusOBJexport"},
+				{"event":"OnMouseLeftDown",		"model":"w_headusOBJexport",		"function":"SetCamera"},
+				{"##":""},
+				
+				{"op":"tip",					"label":"LibraryTipLabel",  		"text":"请双击EP管使其放到桌面上。"},
+				{"op":"flashingoff",			"model":"w_headusOBJexport"},
+				{"op":"anim",					"model":"lixinji",					"name":"Take 001"},
+				{"op":"flashingon",				"model":"epguan16"},
+				{"event":"OnMouseDoubleClick",	"model":"epguan16",					"function":"OnEpguanClicked"},
+				{"##":""},
+				
+				{"event":"OnWaitSecond",		"time":"4s"},
+				{"##":""},
+				
+				{"op":"tip",					"label":"LibraryTipLabel",  		"text":"已经将EP管放在桌面上，请点击EP管丢弃上清。"},
+				{"event":"OnMouseLeftDown",		"model":"epguan16"},
+				{"##":""},
+				
+				{"op":"anim",					"model":"epguan16",					"name":"Take 0010"},
+				{"event":"OnWaitSecond",		"time":"2s"},
+				{"##":""},
+				
+				{"op":"anim",					"model":"lixinji",					"name":"Take 002"},
+				{"op":"flashingoff",			"model":"epguan16"},
+				{"op":"hide",					"model":"epguan16"},
+				{"op":"hide",					"model":"lixinji"}
+			]
+		},
+		
+		{
+			"Scene":
+			[
+				{"name":"Scene6"}
+			],
+			
+			"Models":
+			[
+				
+			],
+			
+			"Display":
+			[
+				{"model":"epguan17"}
+			],
+			
+			"Instructions":
+			[
+				{"op":"tip",					"label":"BGTitleLabel",				"text":"十七、完全释放乙醇"},
+				{"op":"tip",					"label":"LibraryTipLabel",  		"text":"请打开PE管盖子完全释放乙醇。"},
+				{"op":"flashingon",				"model":"epguan17"},
+				{"event":"OnMouseLeftDown",		"model":"epguan17"},
+				{"##":""},
+				
+				{"op":"tip",					"label":"LibraryTipLabel",  		"text":"请等待乙醇完全释放完成"},
+				{"op":"flashingoff",			"model":"epguan17"},
+				{"op":"anim",					"model":"epguan17",					"name":"Take 0010"},
+				{"event":"OnWaitSecond",		"time":"2s"},
+				{"##":""},
+
+				{"op":"hide",					"model":"epguan17"}
+			]
+		},
+		
+		{
+			"Scene":
+			[
+				{"name":"Scene14"}
+			],
+			
+			"Models":
+			[
+				{"model":"yiyeqixin",	"name":"移液器"},
+				
+				{"model":"bingyichun",	"name":"冰乙醇溶液"}
+			],
+			
+			"Display":
+			[
+				{"model":"epguan11"}, 				
+
+				{"model":"bingyichun"},
+				
+				{"model":"yiyeqijiazi"},
+				
+				{"model":"yiyeqixin"}
+			],
+			
+			"Instructions":
+			[
+				{"op":"tip",					"label":"BGTitleLabel",				"text":"十八、溶解RNA"},
+				{"op":"tip",					"label":"LibraryTipLabel",  		"text":"请点击打开冰乙醇瓶盖。"},
+				{"op":"flashingon",				"model":"bingyichun"},
+				{"event":"OnMouseLeftDown",		"model":"bingyichun"},
+				{"##":""},
+				
+				{"op":"tip",					"label":"LibraryTipLabel",  		"text":"请拿起移液器进行溶液的抽取。"},
+				{"op":"anim",					"model":"bingyichun",				"name":"Take 001"},
+				{"op":"flashingoff",			"model":"bingyichun"},
+				{"op":"flashingon",				"model":"yiyeqixin"},
+				{"event":"OnMouseDrag",			"model":"yiyeqixin,bingyichun",		"function":"SetPos"},
+				{"##":""},
+				
+				{"op":"tip",					"label":"LibraryTipLabel",  		"text":"请吸取DDH220溶液0.5ml。"},
+				{"op":"anim",					"model":"yiyeqixin",				"name":"Take 001"},
+				{"event":"OnMouseRightDown",	"model":"yiyeqixin",				"function":"onAbsorbLiquid",		"data":[{"value":"0.5"}]},
+				{"##":""},
+				
+				{"op":"tip",					"label":"LibraryTipLabel",  		"text":"请将溶液加入到EP管中。"},
+				{"op":"flashingoff",			"model":"yiyeqixin"},
+				{"op":"flashingon",				"model":"epguan11"},
+				{"event":"OnMouseDrag",			"model":"yiyeqixin,epguan11",		"function":"SetPos2"},
+				{"##":""},
+				
+				{"op":"tip",					"label":"LibraryTipLabel",  		"text":"请双击移液器，将溶液加入EP管中。"},
+				{"op":"flashingoff",			"model":"epguan11"},
+				{"event":"OnMouseDoubleClick",	"model":"yiyeqixin"},
+				{"##":""},
+				
+				{"op":"tip",					"label":"LibraryTipLabel",  		"text":"DDH220溶液已经添加。"},
+				{"op":"anim",					"model":"yiyeqixin",				"name":"Take 002"},
+				{"event":"OnWaitSecond",		"time":"2s"},
+				{"op":"showUI",					"UI":"TimeShowSprite"},
+				{"##":""},
+	
+				{"op":"hide",					"model":"epguan11"},
+				{"op":"hide",					"model":"yiyeqijiazi"},
+				{"op":"hide",					"model":"yibingchun"}
+			]
+		}
+		
+
+	]
+}
